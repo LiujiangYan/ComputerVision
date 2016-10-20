@@ -1,12 +1,13 @@
 clear
 clc
 format compact
+addpath('rawimage');
 % uncomment the image reading command and change the image name
 % the value following each pair are for detect features threshold
 % bikes1 - bikes2 0.99
 % bikes1 - bikes3 0.99
-% img_1 = imread('bikes3.png');
-% img_2 = imread('bikes1.png');
+img_1 = imread('bikes3.png');
+img_2 = imread('bikes1.png');
 % graf1 - graf2 0.9
 % graf1 - graf3 0.3
 % img_1 = imread('graf3.png');

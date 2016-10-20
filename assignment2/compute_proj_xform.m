@@ -4,12 +4,13 @@ function proj_xform = compute_proj_xform(matches,features1,features2,...
     x1 = zeros(4,1); y1 = zeros(4,1); 
     x2 = zeros(4,1); y2 = zeros(4,1);
     
-    % let's take N times to get the best affine matrix
+    % let's take N times to get the best projective matrix
     N = 5000;
     
-    % record the final matrix and inlier number
+    % record the final matrix
     proj_xform = zeros(3,3);
     
+    % record the inlier with a label in third column of matches
     matches_mark = matches;
     matches_mark(:,3) = 0;
     
@@ -35,7 +36,7 @@ function proj_xform = compute_proj_xform(matches,features1,features2,...
             A = [A; subA];
         end
         
-        % get the squre matrixA^TA for eigenvector computing
+        % get the square matrix A^TA for eigenvector computing
         ATA = A'*A;
         [V,D] =  eig(ATA);
         
@@ -47,9 +48,6 @@ function proj_xform = compute_proj_xform(matches,features1,features2,...
         
         % assign the elements of h for correction
         h = reshape(h,3,3)';
-        
-        % the current count of inliers
-        count = 0;
         
         % loop the points pairs to get the inliers for this h
         for n=1:length(matches)
@@ -73,6 +71,7 @@ function proj_xform = compute_proj_xform(matches,features1,features2,...
         end
     end
     
+    % normalize the last element of transformation matrix
     proj_xform = proj_xform/proj_xform(3,3);
     
     % display the matches

@@ -30,7 +30,7 @@ function [rows,cols] = detect_features(image)
     k = 0.06;
     R = Ix_square.*Iy_square-Ix_Iy.*Ix_Iy-k*(Ix_square+Iy_square).^2;
     
-    threshold = quantile(R(:),0.3);
+    threshold = quantile(R(:),0.99);
     
     % call the nonmaxsuppts to get the interest features
     [rows, cols] = nonmaxsuppts(R,2,threshold);

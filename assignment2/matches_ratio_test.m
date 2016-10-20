@@ -1,6 +1,6 @@
 function matches = matches_ratio_test(descriptors1, descriptors2)
     % the threshold
-    threshold = 0.95;
+    threshold = 0.6;
     matches = [];
     
     % get the ssd between each possible pair of matching

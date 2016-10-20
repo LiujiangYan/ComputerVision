@@ -46,8 +46,6 @@ function [affine_xform] = compute_affine_xform(matches,features1,features2,...
         % get the parameter vector t by direct calculation
         t = b/a;
 
-        % count the inlier for each trial
-        count = 0;
         % loop the points pairs in matches
         % compare the real point to mapped point
         for n=1:length(matches)
@@ -57,7 +55,6 @@ function [affine_xform] = compute_affine_xform(matches,features1,features2,...
             
             % if the difference of the norm of vector difference is less than 10
             if norm(feature_calculated-feature_mapped)<10
-                count = count + 1;
                 matches_mark_cur(n,3) = 1;
             end
         end
